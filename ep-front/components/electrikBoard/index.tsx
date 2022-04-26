@@ -7,16 +7,36 @@ const defaultPanel: { type: string; pos: number }[][] = [
     { type: 'A', pos: 0 },
     { type: 'B', pos: 180 },
     { type: 'A', pos: 90 },
+    { type: 'C', pos: 0 },
+    { type: 'B', pos: 270 },
   ],
   [
     { type: 'C', pos: 180 },
-    { type: 'Z', pos: 1 },
     { type: 'A', pos: 270 },
+    { type: 'C', pos: 0 },
+    { type: 'A', pos: 90 },
+    { type: 'B', pos: 90 },
   ],
   [
     { type: 'B', pos: 90 },
     { type: 'A', pos: 270 },
+    { type: 'Z', pos: 1 },
+    { type: 'B', pos: 0 },
+    { type: 'A', pos: 180 },
+  ],
+  [
+    { type: 'C', pos: 90 },
+    { type: 'A', pos: 270 },
+    { type: 'A', pos: 0 },
+    { type: 'C', pos: 90 },
+    { type: 'A', pos: 180 },
+  ],
+  [
+    { type: 'A', pos: 90 },
+    { type: 'A', pos: 270 },
+    { type: 'A', pos: 0 },
     { type: 'C', pos: 0 },
+    { type: 'B', pos: 180 },
   ],
 ];
 
