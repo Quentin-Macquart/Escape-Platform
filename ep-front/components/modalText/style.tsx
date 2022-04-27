@@ -25,17 +25,6 @@ const SModalText = styled.section`
     color: white;
   }
 
-  hr {
-    height: 10px;
-    visibility: hidden;
-  }
-
-  @mixin step1($width, $color) {
-    box-shadow: $width 0 $color, -$width 0 $color, 0 (-$width) $color,
-      0 $width $color;
-    margin: $width auto;
-  }
-
   /* The typing effect */
   @keyframes typing {
     from {

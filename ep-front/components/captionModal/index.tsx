@@ -1,14 +1,24 @@
 import React, { useState } from "react";
-import SModalText from "../captionModal/style";
+import SCaptionModal from "./style";
 
-interface ModalTextProps {
-  text: string;
+interface CaptionModalProps {
+  title: string;
+  image: string;
+  altImage: string;
+  author: string;
+  date: string;
 }
 /**
  *  a component with a button, and when you click on it a text appear
  * @returns {React.ReactElement} a component with a button, and when you click on it a text appear
  */
-const ModalText: React.ComponentType<ModalTextProps> = ({ text }) => {
+const CaptionModal: React.ComponentType<CaptionModalProps> = ({
+  title,
+  author,
+  date,
+  image,
+  altImage,
+}) => {
   const [isActived, setIsActived] = useState<boolean>(false);
 
   /**
@@ -19,17 +29,21 @@ const ModalText: React.ComponentType<ModalTextProps> = ({ text }) => {
   };
 
   return (
-    <SModalText>
+    <SCaptionModal>
       <button type="button" onClick={textAppeared}>
-        Display text for test !
+        <img src={image} alt={altImage} />
       </button>
       {isActived && (
         <div>
-          <p>{text}</p>
+          <p>
+            {title}
+            <br />
+            {author}, {date}
+          </p>
         </div>
       )}
-    </SModalText>
+    </SCaptionModal>
   );
 };
 
-export default ModalText;
+export default CaptionModal;
