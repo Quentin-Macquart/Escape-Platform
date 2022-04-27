@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -10,7 +9,6 @@ const Home: NextPage = () => {
         <title>Escape-Platform</title>
         <meta name="description" content="Escape-Platform" />
       </Head>
-
       <h1>Welcome to Escape-Platform</h1>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates,
@@ -24,5 +22,4 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
 export default Home;
