@@ -1,6 +1,4 @@
-import React, { ComponentType, useState, useEffect } from "react";
-// import SElectrikBoard from "./style";
-
+import React, { ComponentType, useState } from "react";
 const ButtonRotation: ComponentType = () => {
   const [rotateNeeded, setRotateNeeded]: [boolean, Function] = useState(false);
   const [oneRotate, setOneRotate]: [number, Function] = useState(0);
