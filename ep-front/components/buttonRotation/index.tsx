@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import SElectrikBoard from "./style";
+
 interface ButtonRotationProps {
   setCircuitPos: React.Dispatch<
     React.SetStateAction<{ type: string; pos: number }>
@@ -7,6 +7,12 @@ interface ButtonRotationProps {
   circuit: { type: string; pos: number };
 }
 
+/**
+ * Button rotating on click
+ * @prop {function} setCircuitPos update the value of circuitPos
+ * @prop {{string, number}} circuit type and actual position of the circuit
+ * @returns {React.ReactElement} button that rotate on click and update circuit's position
+ */
 const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
   setCircuitPos,
   circuit,
@@ -19,10 +25,17 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
     transition: 'transform 70ms ease',
   };
 
+  /**
+   * Rotate the clicked button
+   */
   const retrieveAngle = () => {
     setOneRotate(oneRotate === 270 ? 0 : oneRotate + 90);
   };
 
+  /**
+   * Update the current circuit position
+   * @param {{string, number}} currCircuit the circuit that was clicked
+   */
   const posHandler = (currCircuit: typeof circuit) => {
     setCircuitPos({
       ...currCircuit,
@@ -33,6 +46,10 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
     });
   };
 
+  /**
+   * Function handling the previouses one to apply their effects on button's click
+   * @param {{string, number}} targetCircuit circuit that was clicked and need the update
+   */
   const rotateClick = (targetCircuit: typeof circuit) => {
     if (targetCircuit.pos !== 1) {
       setRotateNeeded(!rotateNeeded);
@@ -51,7 +68,6 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
       onClick={() => rotateClick(circuit)}
       //   className={`square${index}`}
     >
-      {/* {index} */}{' '}
       {circuit.pos === 1 ? 'G' : `${circuit.type}${circuit.pos}`}
     </button>
   );

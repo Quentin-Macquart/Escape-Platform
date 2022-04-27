@@ -1,5 +1,7 @@
-import React, { ComponentType, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import ButtonRotation from '../buttonRotation';
+
 import SElectrikBoard from './style';
 
 const defaultPanel: { type: string; pos: number }[][] = [
@@ -40,7 +42,11 @@ const defaultPanel: { type: string; pos: number }[][] = [
   ],
 ];
 
-const ElectrikBoard: ComponentType = () => {
+/**
+ * Component displaying the electric board puzzle
+ * @returns {React.ReactElement} Electric board puzzle with clickable buttons
+ */
+const ElectrikBoard: React.ComponentType = () => {
   const [panel] = useState<typeof defaultPanel>(defaultPanel);
   const [circuitPos, setCircuitPos] = useState<{ type: string; pos: number }>({
     type: '',
