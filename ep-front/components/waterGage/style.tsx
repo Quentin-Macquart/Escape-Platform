@@ -44,7 +44,7 @@ const SWaterGage = styled.section<SWaterGageProps>`
   }
 
   .water {
-    background-image: url('/[id]/gageWater.gif');
+    background-image: url('/game1/image/gageWater.gif');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
