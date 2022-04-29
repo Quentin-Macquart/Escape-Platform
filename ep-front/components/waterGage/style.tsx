@@ -52,42 +52,14 @@ const SWaterGage = styled.section<SWaterGageProps>`
     width: 100%;
     max-height: 100%;
     transition: 1s;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
   }
 
   .leftGage {
-    animation-name: movingWaterLeft;
     height: ${({ leftLevel }) => leftLevel * 2}%;
   }
 
   .rightGage {
-    animation-name: movingWaterRight;
     height: ${({ rightLevel }) => rightLevel}%;
-  }
-
-  @keyframes movingWaterLeft {
-    0% {
-      height: ${({ leftLevel }) => (leftLevel + 0.5) * 2}%;
-    }
-    50% {
-      height: ${({ leftLevel }) => (leftLevel - 0.5) * 2}%;
-    }
-    100% {
-      height: ${({ leftLevel }) => (leftLevel + 0.5) * 2}%;
-    }
-  }
-
-  @keyframes movingWaterRight {
-    0% {
-      height: ${({ rightLevel }) => rightLevel + 0.5}%;
-    }
-    50% {
-      height: ${({ rightLevel }) => rightLevel - 0.5}%;
-    }
-    100% {
-      height: ${({ rightLevel }) => rightLevel + 0.5}%;
-    }
   }
 
   .water span {
