@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SWaterGage from './style';
 
@@ -9,6 +9,7 @@ import SWaterGage from './style';
 const WaterGage: React.ComponentType = () => {
   const [leftWater, setLeftWater] = useState<number>(30);
   const [rightWater, setRightWater] = useState<number>(15);
+  const [isResolved, setIsResolved] = useState<boolean>(false);
 
   /**
    * Function to handle the water level of the water gages
@@ -16,9 +17,17 @@ const WaterGage: React.ComponentType = () => {
    * @param {number} rightLevel level of the right gage
    */
   const handleWaterLevel = (leftLevel: number, rightLevel: number) => {
-    setLeftWater(leftLevel <= 0 ? 0 : leftLevel >= 50 ? 50 : leftLevel);
-    setRightWater(rightLevel <= 0 ? 0 : rightLevel >= 100 ? 100 : rightLevel);
+    if (isResolved === false) {
+      setLeftWater(leftLevel <= 0 ? 0 : leftLevel >= 50 ? 50 : leftLevel);
+      setRightWater(rightLevel <= 0 ? 0 : rightLevel >= 100 ? 100 : rightLevel);
+    }
   };
+
+  useEffect(() => {
+    if (leftWater === 18 && rightWater === 31) {
+      setIsResolved(true);
+    }
+  }, [leftWater, rightWater]);
 
   return (
     <SWaterGage leftLevel={leftWater} rightLevel={rightWater}>
