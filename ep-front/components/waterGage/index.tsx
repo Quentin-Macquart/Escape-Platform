@@ -13,6 +13,7 @@ const WaterGage: React.ComponentType = () => {
   const [rightWater, setRightWater] = useState<number>(15);
   const [isResolved, setIsResolved] = useState<boolean>(false);
   const [waterSound] = useState<string>('/game1/sounds/water-tube-2.mp3');
+  const [unlockSound] = useState<string>('/game1/sounds/unlock-2.mp3');
 
   /**
    * Function to handle the water level of the water gages
@@ -30,6 +31,7 @@ const WaterGage: React.ComponentType = () => {
   useEffect(() => {
     if (leftWater === 18 && rightWater === 31) {
       setIsResolved(true);
+      soundEffect(unlockSound, 1000);
     }
   }, [leftWater, rightWater]);
 
