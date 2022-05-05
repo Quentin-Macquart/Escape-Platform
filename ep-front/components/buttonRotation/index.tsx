@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+
+import { soundEffect } from '../../lib/soundEffect';
 
 interface ButtonRotationProps {
   setPosition: React.Dispatch<
@@ -21,6 +23,7 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
 }) => {
   const [rotateNeeded, setRotateNeeded] = useState<boolean>(false);
   const [oneRotate, setOneRotate] = useState<number>(0);
+  const [circuitSound] = useState<string>('/game1/sounds/circuit-4.mp3');
 
   const style: { transform: string; transition: string } = {
     transform: `rotate(${oneRotate}deg)`,
@@ -57,6 +60,7 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
       setRotateNeeded(!rotateNeeded);
       retrieveAngle();
       posHandler(targetCircuit);
+      soundEffect(circuitSound);
     }
   };
 

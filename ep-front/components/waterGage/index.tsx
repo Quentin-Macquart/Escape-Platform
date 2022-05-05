@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { soundEffect } from '../../lib/soundEffect';
+
 import SWaterGage from './style';
 
 /**
@@ -10,6 +12,8 @@ const WaterGage: React.ComponentType = () => {
   const [leftWater, setLeftWater] = useState<number>(30);
   const [rightWater, setRightWater] = useState<number>(15);
   const [isResolved, setIsResolved] = useState<boolean>(false);
+  const [waterSound] = useState<string>('/game1/sounds/water-tube-2.mp3');
+  const [unlockSound] = useState<string>('/game1/sounds/unlock-2.mp3');
 
   /**
    * Function to handle the water level of the water gages
@@ -20,12 +24,14 @@ const WaterGage: React.ComponentType = () => {
     if (isResolved === false) {
       setLeftWater(leftLevel <= 0 ? 0 : leftLevel >= 50 ? 50 : leftLevel);
       setRightWater(rightLevel <= 0 ? 0 : rightLevel >= 100 ? 100 : rightLevel);
+      soundEffect(waterSound);
     }
   };
 
   useEffect(() => {
     if (leftWater === 18 && rightWater === 31) {
       setIsResolved(true);
+      soundEffect(unlockSound, 1000);
     }
   }, [leftWater, rightWater]);
 
