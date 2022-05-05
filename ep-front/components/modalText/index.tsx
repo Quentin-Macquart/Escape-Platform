@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SModalText from "../captionModal/style";
+import SModalText from "../modalText/style";
 
 interface ModalTextProps {
   text: string;
