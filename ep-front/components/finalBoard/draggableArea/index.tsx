@@ -35,14 +35,12 @@ const DraggableArea: React.ComponentType<DraggableAreaProps> = ({
     transition: "transform 70ms ease",
   };
 
-  const handleDragStart = (element: standardObject) => {
-    setActiveDragBoard(element);
-  };
-
-  const handleDragLeave = (e: any) => {
-    e.target.style.border = "1px solid blue";
-  };
-
+  /** Function which allows to transfer data from active element to passive element
+   * It also display a state will allows to replace the default element for the active element
+   *  Add any type for the moment cause i can"t find the right type of the parameter
+   * @param {any} e element selected will apply the CSS
+   *
+   */
   const handleDrop = (e: any) => {
     e.target.style.border = "1px solid blue";
     SetIsTransfered(true);
