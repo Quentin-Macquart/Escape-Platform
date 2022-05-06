@@ -1,31 +1,97 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ButtonRotation from "../buttonRotation";
 import DraggableArea from "./draggableArea";
 import SFinalBoard from "./style";
 
 type standardObject = { type: string; pos: number };
-
 const defaultPanelTop: {
-  id: number;
   type: string;
   pos: number;
 }[] = [
-  { id: 1, type: "Wm", pos: 0 },
-  { id: 2, type: "09", pos: 180 },
+  { type: "Wm", pos: 0 },
+  { type: "09", pos: 180 },
 ];
 
 const defaultPanelBottom: {
-  id: number;
   type: string;
   pos: number;
 }[] = [
-  { id: 3, type: "qp", pos: 90 },
-  { id: 4, type: "jR", pos: 0 },
+  { type: "qp", pos: 90 },
+  { type: "jR", pos: 0 },
 ];
 
+interface PanelProps {
+  panelType: { type: string; pos: number }[];
+  setDragItemActive: React.Dispatch<
+    React.SetStateAction<{ type: string; pos: number }>
+  >;
+  setPosition: React.Dispatch<
+    React.SetStateAction<{ type: string; pos: number }>
+  >;
+}
+
 /**
- *
- * @returns {React.ReactElement} a component which display the last board to win
+ * @returns a component which displays a bunch of squares that will be our pieces of paints
+ */
+const Panel: React.ComponentType<PanelProps> = ({
+  panelType,
+  setDragItemActive,
+  setPosition,
+}) => {
+  /**
+   * @param {standardObject} element object that will apply the function once its dragged
+   */
+  const handleOnDrag = (element: standardObject) => {
+    setDragItemActive(element);
+  };
+
+  /** Add any type for the moment cause i can"t find the right type of the parameter
+   * @param {any} e element selected will apply the CSS
+   */
+  const handleDragStart = (e: any) => {
+    e.target.style.opacity = 0.5;
+  };
+
+  /** Add any type for the moment cause i can"t find the right type of the parameter
+   * @param {any} e element selected will apply the CSS
+   */
+  const handleDragEnd = (e: any) => {
+    e.target.style.opacity = 1;
+  };
+
+  return (
+    <ul className="topButtons">
+      {panelType.map((element, index) => {
+        return (
+          <li
+            draggable
+            key={index}
+            onDragStart={(e) => {
+              handleDragStart(e);
+            }}
+            onDrag={() => {
+              handleOnDrag(element);
+            }}
+            onDragEnd={(e) => {
+              handleDragEnd(e);
+            }}
+          >
+            <ButtonRotation
+              index={index}
+              key={index}
+              setPosition={setPosition}
+              locationCode={element}
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+/**
+ * Piece of room4, last board to complete the game
+ * @returns {React.ReactElement} a complete board which reunite a draggable area + others blocks that will fill this area
  */
 const FinalBoard: React.ComponentType = () => {
   const [angle, setAngle] = useState<number>(0);
@@ -54,55 +120,20 @@ const FinalBoard: React.ComponentType = () => {
     pos: 0,
   });
 
-  const handleDragStart = (index: number, element: standardObject) => {
-    setDragItemActive(element);
-  };
-
-  const handleDragOver = (e: any, index: number, element: any) => {
-    e.target.style.backgroundColor = "#bbcc26";
-  };
-
-  const handleDragLeave = (e: any) => {
-    e.target.style.border = "1px solid blue";
-  };
-
-  // const onDragEnd = (e: any) => {
-  //   e.target.style.display = "none";
-  // };
-
   return (
     <SFinalBoard>
-      <ul className="topButtons">
-        {panelTop.map((element, index) => {
-          return (
-            <li
-              draggable
-              key={index}
-              onDragStart={() => handleDragStart(index, element)}
-              onDrag={() => {
-                handleDragStart(index, element);
-              }}
-              onDragEnd={(e) => {
-                // onDragEnd(e);
-              }}
-            >
-              <ButtonRotation
-                index={index}
-                key={index}
-                setPosition={setCircuitPos}
-                locationCode={element}
-              />
-            </li>
-          );
-        })}
-      </ul>
-
+      <Panel
+        panelType={panelTop}
+        setDragItemActive={setDragItemActive}
+        setPosition={setCircuitPos}
+      />
       <section>
         <div className="emptyBoard">
           <ul>
             {panels.map((element, index) => {
               return (
                 <DraggableArea
+                  key={index}
                   index={index}
                   defaultElement={element}
                   dragItemActive={dragItemActive}
@@ -113,30 +144,11 @@ const FinalBoard: React.ComponentType = () => {
         </div>
       </section>
 
-      <ul className="bottomButtons">
-        {panelBot.map((element, index) => {
-          return (
-            <li
-              draggable
-              key={index}
-              onDragStart={() => handleDragStart(index, element)}
-              onDrag={() => {
-                handleDragStart(index, element);
-              }}
-              onDragEnd={(e) => {
-                // onDragEnd(e);
-              }}
-            >
-              <ButtonRotation
-                index={index}
-                key={index}
-                setPosition={setCircuitPos}
-                locationCode={element}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <Panel
+        panelType={panelBot}
+        setDragItemActive={setDragItemActive}
+        setPosition={setCircuitPos}
+      />
     </SFinalBoard>
   );
 };
