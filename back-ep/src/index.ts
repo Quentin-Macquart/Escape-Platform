@@ -1,5 +1,7 @@
 import express, { Request, Response, Application } from "express";
-const backPort: any = process.env.BACK_PORT || 8080;
+import "dotenv/config";
+
+const backPort: any = process.env.BACK_PORT;
 
 const app: Application = express();
 // const { setupRoutes } = require("./routes");
