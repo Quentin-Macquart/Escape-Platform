@@ -10,7 +10,7 @@ const Step4: NextPage = () => {
   );
 
   useEffect(() => {
-    fetchData(setDataTest, "http://localhost:8080/games");
+    fetchData(setDataTest, "http://localhost:8080/games", "One", 0);
   }, []);
 
   return (
