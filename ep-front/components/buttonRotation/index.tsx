@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { soundEffect } from "../../lib/soundEffect";
+import React, { useState, useEffect } from 'react';
+import { soundEffect } from '../../lib/soundEffect';
 
 interface ButtonRotationProps {
   setPosition: React.Dispatch<
@@ -22,11 +22,11 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
 }) => {
   const [rotateNeeded, setRotateNeeded] = useState<boolean>(false);
   const [oneRotate, setOneRotate] = useState<number>(0);
-  const [circuitSound] = useState<string>("/game1/sounds/circuit-4.mp3");
+  const [circuitSound] = useState<string>('/game1/sounds/circuit-4.mp3');
 
   const style: { transform: string; transition: string } = {
     transform: `rotate(${oneRotate}deg)`,
-    transition: "transform 70ms ease",
+    transition: 'transform 70ms ease',
   };
 
   /**
@@ -63,6 +63,249 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
     }
   };
 
+  /**
+   * Function to return a display depending the type of panel
+   * /!\ svg will change to image later, not the final version of the function
+   * @returns {SVGElement} svg that display the panel visual
+   */
+  const panelDisplay = () => {
+    switch (locationCode.type) {
+      case 'A':
+        return (
+          <svg width="100%" height="100%">
+            <line
+              x1="50%"
+              y1="0%"
+              x2="50%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+            <line
+              x1="50%"
+              y1="50%"
+              x2="100%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'B':
+        return (
+          <svg width="100%" height="100%">
+            <line
+              x1="50%"
+              y1="0%"
+              x2="50%"
+              y2="100%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'C':
+        return (
+          <svg width="100%" height="100%">
+            <line
+              x1="50%"
+              y1="0%"
+              x2="50%"
+              y2="100%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+            <line
+              x1="50%"
+              y1="50%"
+              x2="100%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'D':
+        return (
+          <svg width="100%" height="100%">
+            <line
+              x1="50%"
+              y1="0%"
+              x2="50%"
+              y2="100%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+            <line
+              x1="0%"
+              y1="50%"
+              x2="100%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'G':
+        return (
+          <svg width="100%" height="100%">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="25%"
+              stroke="black"
+              strokeWidth="2px"
+              fill="crimson"
+            />
+            <circle
+              cx="60%"
+              cy="40%"
+              r="5%"
+              stroke="pink"
+              strokeWidth="2px"
+              fill="pink"
+            />
+            <line
+              x1="50%"
+              y1="75%"
+              x2="50%"
+              y2="100%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'K1':
+        return (
+          <svg width="100%" height="100%">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="25%"
+              stroke="black"
+              strokeWidth="2px"
+              fill="green"
+            />
+            <circle
+              cx="60%"
+              cy="40%"
+              r="5%"
+              stroke="lightgreen"
+              strokeWidth="2px"
+              fill="lightgreen"
+            />
+            <line
+              x1="50%"
+              y1="75%"
+              x2="50%"
+              y2="100%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'K2':
+        return (
+          <svg width="100%" height="100%">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="25%"
+              stroke="black"
+              strokeWidth="2px"
+              fill="orange"
+            />
+            <circle
+              cx="60%"
+              cy="40%"
+              r="5%"
+              stroke="yellow"
+              strokeWidth="2px"
+              fill="yellow"
+            />
+            <line
+              x1="50%"
+              y1="0%"
+              x2="50%"
+              y2="25%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'K3':
+        return (
+          <svg width="100%" height="100%">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="25%"
+              stroke="black"
+              strokeWidth="2px"
+              fill="blue"
+            />
+            <circle
+              cx="60%"
+              cy="40%"
+              r="5%"
+              stroke="lightblue"
+              strokeWidth="2px"
+              fill="lightblue"
+            />
+            <line
+              x1="0%"
+              y1="50%"
+              x2="25%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      case 'K4':
+        return (
+          <svg width="100%" height="100%">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="25%"
+              stroke="black"
+              strokeWidth="2px"
+              fill="purple"
+            />
+            <circle
+              cx="60%"
+              cy="40%"
+              r="5%"
+              stroke="magenta"
+              strokeWidth="2px"
+              fill="magenta"
+            />
+            <line
+              x1="0%"
+              y1="50%"
+              x2="25%"
+              y2="50%"
+              stroke="crimson"
+              strokeWidth="2px"
+            />
+          </svg>
+        );
+        break;
+      default:
+        `${locationCode.type}${locationCode.pos}`;
+        break;
+    }
+  };
+
   useEffect(() => {
     locationCode.pos !== 1 && setOneRotate(locationCode.pos);
   }, []);
@@ -74,7 +317,7 @@ const ButtonRotation: React.ComponentType<ButtonRotationProps> = ({
       onClick={() => rotateClick(locationCode)}
       draggable
     >
-      {locationCode.pos === 1 ? "G" : `${locationCode.type}${locationCode.pos}`}
+      {panelDisplay()}
     </button>
   );
 };
