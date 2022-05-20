@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { pool } from "../src/conf";
+import { pool } from "../src/utils/dbClient";
 
 const userRouter = express.Router();
 
@@ -10,7 +10,7 @@ userRouter.get("/", async (req: Request, res: Response) => {
     const sql = 'SELECT * FROM public."Users"';
     const userData: any = await pool.query(sql);
     const user = userData.rows;
-    res.status(201).json(user);
+    res.status(201).send(user);
   } catch (err) {
     res.status(400).send(err);
   }

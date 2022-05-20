@@ -1,7 +1,9 @@
 import express, { Request, Response, Application } from "express";
 import setupRoutes from "../routes";
 import cors from "cors";
-import { DB_PORT } from "./conf";
+import { DB_PORT } from "./utils/dbClient";
+import dotenv from "dotenv";
+dotenv.config();
 
 const port: string | number = DB_PORT || 8080;
 export const app: Application = express();
@@ -10,9 +12,9 @@ app.use(cors());
 setupRoutes(app);
 
 app.use("/", (req: Request, res: Response): void => {
-  res.send("Hello Typescript with Node.js!");
+  res.send("Hello Esqape Database ! ** ");
 });
 
 app.listen(port, (): void => {
-  console.log(`Server Running here 👉 https://localhost:${port}`);
+  console.log(`👉 Server Running here `);
 });

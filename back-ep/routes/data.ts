@@ -11,7 +11,7 @@ dataRouter.get("/", async (req: Request, res: Response) => {
       object: {},
       string: "Hello this is Router test",
     };
-    res.status(201).json(test);
+    res.status(201).send(test);
   } catch (err) {
     res.status(400).send(err);
   }

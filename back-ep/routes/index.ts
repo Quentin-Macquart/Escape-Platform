@@ -14,3 +14,8 @@ const setupRoutes = (app: Application) => {
 };
 
 export default setupRoutes;
+
+//folder controllers ok
+//localhost adress to delete ok
+//folder requests with SQL object ok
+//folder utils /file dbClient.ts instead of conf
