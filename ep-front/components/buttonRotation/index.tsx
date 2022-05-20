@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { soundEffect } from "../../lib/soundEffect";
+import { soundEffect } from "../../lib/features";
 
 interface ButtonRotationProps {
   setPosition: React.Dispatch<
